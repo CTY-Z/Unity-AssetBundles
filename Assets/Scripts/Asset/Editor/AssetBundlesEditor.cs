@@ -1,6 +1,7 @@
 using System;
 using UnityEditor;
 using System.IO;
+using UnityEngine;
 
 public class AssetBundlesEditor
 {
@@ -11,7 +12,7 @@ public class AssetBundlesEditor
     {
         AssetDatabase.RemoveUnusedAssetBundleNames();
 
-        String assetDirectory = "G:/Github/Unity-AssetBundles/Assets/ResRoot";
+        String assetDirectory = Application.dataPath + "/ResRoot";
         DirectoryInfo info = new DirectoryInfo(assetDirectory);
         DirectoryInfo[] resRootInfos = info.GetDirectories();
 
@@ -33,7 +34,16 @@ public class AssetBundlesEditor
             }
         }
 
+        string[] bundlesNames =  AssetDatabase.GetAllAssetBundleNames();
+
+        foreach (string name in bundlesNames)
+        {
+            Common.Log(name);
+        }
+
         Common.Log("Set AssetBundles Labels Sucesssfuly!");
+
+
     }
 
     private static void OnResFileSystemInfo(FileSystemInfo fsInfo, string sceneName)
@@ -101,6 +111,31 @@ public class AssetBundlesEditor
         }
 
         return sceneName;
+    }
+
+    #endregion
+
+    #region Build AssetBundles
+
+    [MenuItem("AssetBundle/Build AssetBundles")]
+    public static void BuildAllAssetBundles()
+    {
+        string outpath = PathUtility.GetAssetBundleOutPath();
+
+        BuildPipeline.BuildAssetBundles(outpath, 0, BuildTarget.StandaloneWindows64);
+    }
+
+    #endregion
+
+    #region delete
+
+    [MenuItem("AssetBundle/Delete All")]
+    public static void DeleteAllAssetBundles()
+    {
+        string outpath = PathUtility.GetAssetBundleOutPath();
+
+        Directory.Delete(outpath, true);
+        File.Delete(outpath + ".meta");
     }
 
     #endregion
