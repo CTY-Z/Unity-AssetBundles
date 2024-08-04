@@ -4,6 +4,18 @@ using UnityEngine;
 
 public class ABLoader : System.IDisposable
 {
+    public ABLoader(string bundleName, AssetLoading loading, AssetLoadComplete loadComplete)
+    {
+        this.bundleName = bundleName;
+        this.bundlePath = PathUtility.GetAssetBundleOutPath() + "/" + bundleName;
+        this.progress = 0f;
+        this.assetLoading = loading;
+        this.assetLoadComplete = loadComplete;
+
+        this.www = null;
+        this.assetLoader = null;
+    }
+
     private AssetLoader assetLoader;
 
     private WWW www;
@@ -59,7 +71,7 @@ public class ABLoader : System.IDisposable
         return assetLoader.LoadAsset<T>(assetName);
     }
 
-    public Object[] LoadAllAsset()
+    public Object[] LoadAllAssets()
     {
         if (assetLoader == null)
         {
