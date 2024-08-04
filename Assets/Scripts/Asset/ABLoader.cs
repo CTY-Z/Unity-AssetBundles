@@ -7,7 +7,7 @@ public class ABLoader : System.IDisposable
     public ABLoader(string bundleName, AssetLoading loading, AssetLoadComplete loadComplete)
     {
         this.bundleName = bundleName;
-        this.bundlePath = PathUtility.GetAssetBundleOutPath() + "/" + bundleName;
+        this.bundlePath = PathUtility.GetWWWPath() + "/" + bundleName;
         this.progress = 0f;
         this.assetLoading = loading;
         this.assetLoadComplete = loadComplete;

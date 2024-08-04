@@ -18,7 +18,7 @@ public class PathUtility
         return outPath;
     }
 
-    private static string GetPlatformPath()
+    public static string GetPlatformPath()
     {
         switch (Application.platform)
         {
@@ -34,7 +34,7 @@ public class PathUtility
 
     }
 
-    private static string GetPlatformName()
+    public static string GetPlatformName()
     {
         switch (Application.platform)
         {
@@ -49,7 +49,7 @@ public class PathUtility
         }
     }
 
-    private static string GetWWWPath()
+    public static string GetWWWPath()
     {
         switch (Application.platform)
         {
@@ -60,7 +60,7 @@ public class PathUtility
             case RuntimePlatform.Android:
                 return "jar:file:///" + GetPlatformPath();
             default:
-                return null;
+                return "";
         }
     }
 

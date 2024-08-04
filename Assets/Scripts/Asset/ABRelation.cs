@@ -8,7 +8,7 @@ public class ABRelation
     {
         this.bundleName = bundleName;
         this.assetLoading = loading;
-        this.finished = false;
+        this.isLoadComplete = false;
 
         list_dependenceBundles = new List<string>();
         list_referenceBundles = new List<string>();
@@ -19,8 +19,8 @@ public class ABRelation
     private ABLoader abLoader;
 
     private string bundleName;
-    private bool finished;
-    public bool Finished { get { return finished; } }
+    private bool isLoadComplete;
+    public bool _isLoadComplete { get { return isLoadComplete; } }
 
     private AssetLoading assetLoading;
 
@@ -30,7 +30,7 @@ public class ABRelation
     /// <param name="bundleName"></param>
     private void LoadComplete(string bundleName)
     {
-        this.finished = true;
+        this.isLoadComplete = true;
     }
 
     #region Dependence
