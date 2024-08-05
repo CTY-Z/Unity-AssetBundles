@@ -23,6 +23,12 @@ public class ABRelation
     public bool _isLoadComplete { get { return isLoadComplete; } }
 
     private AssetLoading assetLoading;
+    public AssetLoading _assetLoading { get { return assetLoading; } }
+
+    public IEnumerator Load()
+    {
+        yield return abLoader.LoadAssetBundle();
+    }
 
     /// <summary>
     /// callbakc when load complete
@@ -126,7 +132,7 @@ public class ABRelation
         return abLoader.LoadAsset<T>(assetName);
     }
 
-    public Object[] LoadAllAsset()
+    public Object[] LoadAllAssets()
     {
         if (abLoader == null)
         {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ABManifestLoader : System.IDisposable
+public class ABManifestLoader
 {
     private static ABManifestLoader instance;
     public static ABManifestLoader _instance
@@ -60,10 +60,5 @@ public class ABManifestLoader : System.IDisposable
     public void UnLoadManifest()
     {
         ab.Unload(true);
-    }
-
-    public void Dispose()
-    {
-
     }
 }
